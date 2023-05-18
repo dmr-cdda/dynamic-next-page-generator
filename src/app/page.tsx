@@ -1,34 +1,47 @@
-"use client";
+"use client"
 
-import { CompoDataTypes, compoData as cData} from "@/data";
+import { CompoDataTypes, compoData as cData } from "@/data";
 import { components } from "@/data/components";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [compoData, setCompoData] = useState<CompoDataTypes>(cData);
 
   useEffect(() => {
-    setCompoData(cData)
+    setCompoData(cData);
   }, []);
-  
-  // convert data to react components
+
+  // Convert data to React components
   const SpecificComponentLayout = components[compoData.layout];
   const SpecificComponentParent = components[compoData.parent];
 
-  
-  // chekcing permission and component exists or not
-  if (compoData.permission?.guest && components[compoData.layout]) return <SpecificComponentLayout>
-      {/* parent  */}
-      <SpecificComponentParent description={compoData?.description}>
-        {compoData?.content?.length && compoData.content.map((d, i) => {
-          const Child = components[d];
-          // child components
-          // checking component exists or not and then render components
-          if(components[d]) return <Child key={i} description={`${compoData.description}- child ${i+1} - ${d}`}/>
-        })}
-    </SpecificComponentParent>
-  </SpecificComponentLayout>
+  // Checking permission and component existence
+  if (compoData.permission?.guest && components[compoData.layout]) { 
+    return (
+      <>
+        <Head>
+          <title>{compoData.meta.title}</title>
+          <meta property="og:title" content="My page title" key="title" />
+        </Head>
+        <SpecificComponentLayout>
+          {/* Parent component */}
+          <SpecificComponentParent description={compoData?.description}>
+            {compoData?.content?.map((component) => {
+              const Child = components[component.name];
+              const { id, name, ...props } = component;
+              // Checking component existence and render components
+              if (components[component.name]) {
+                return <Child key={id} {...props} />;
+              }
+              return null; // Or handle the case where the component doesn't exist
+            })}
+          </SpecificComponentParent>
+        </SpecificComponentLayout>
+      </>
+    );
+  }
 
-  return null
+  return null;
+}
 
-};
