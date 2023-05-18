@@ -19,12 +19,12 @@ export default function Home() {
 
   
 
-  if(compoData.permission?.guest) return <SpecificComponentLayout>
+  if(compoData.permission?.guest && components[compoData.layout]) return <SpecificComponentLayout>
       <SpecificComponent description={compoData?.description}>
         {compoData?.content?.length && compoData.content.map((d, i) => {
           const Child = components[d];
 
-          return <Child key={i} description={`${compoData.description}- child ${i+1} - ${d}`}/>
+          if(components[d]) return <Child key={i} description={`${compoData.description}- child ${i+1} - ${d}`}/>
         })}
     </SpecificComponent>
   </SpecificComponentLayout>
