@@ -3,11 +3,7 @@ import Bar, { BarProps } from "@/app/components/Bar";
 import Foo, { FooProps } from "@/app/components/Foo";
 import FooBar, { FoobarProps } from "@/app/components/FooBar";
 
-export type ComponentsType = {
-    foo: FC<FooProps>,
-    bar: FC<BarProps>,
-    fooBar : FC<FoobarProps>
-}
+export type ComponentsType = Record<string, React.ComponentType<any>>
 
 export const components : ComponentsType = {
     foo: Foo,

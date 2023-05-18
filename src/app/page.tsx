@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 
 export default function Home() {
-  const [compoData, setCompoData] = useState<CompoDataTypes>({});
+  const [compoData, setCompoData] = useState<CompoDataTypes>(cData);
 
   useEffect(() => {
     setCompoData(cData)
@@ -17,7 +17,7 @@ export default function Home() {
 
   
 
-  if(compoData.permission?.guest)   return <SpecificComponentLayout>
+  if(compoData.permission?.guest) return <SpecificComponentLayout>
       <SpecificComponent description={compoData.description}>
         {compoData?.content?.length && compoData.content.map((d, i) => {
           const Child = components[d];
