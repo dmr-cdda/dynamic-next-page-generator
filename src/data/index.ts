@@ -4,7 +4,7 @@ export type CompoDataTypes = {
     slug: string,
     id: number, 
     parent: string,
-    meta: string,
+    meta: {},
     permission?: {
         guest: boolean,
         login: boolean, 
@@ -17,19 +17,22 @@ export type CompoDataTypes = {
 }
 
 export const compoData : CompoDataTypes = {
-  title: "Foo",
-  description: "Foo bar testing",
-  slug: "/foo",
+  title: "Page generator",
+  description: "Page testing",
+  slug: "/content",
   id: 1,
-  parent: "foo",
-  meta: "",
+  layout: "layout",
+  parent: "empty",
+  meta: {
+    
+  },
     permission: {
         guest: true,
         login: true,
         role : null
   },
-  layout: "fooBar",
-  content: ["bar","foo"],
+
+  content: ["navbar","content"],
   faqs: "Ask me something",
   tour: []
 };
