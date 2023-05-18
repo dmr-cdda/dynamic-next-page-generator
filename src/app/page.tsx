@@ -10,23 +10,23 @@ export default function Home() {
   useEffect(() => {
     setCompoData(cData)
   }, []);
-
-  console.log(compoData);
   
-  
+  // convert data to react components
   const SpecificComponentLayout = components[compoData.layout];
-  const SpecificComponent = components[compoData.parent];
+  const SpecificComponentParent = components[compoData.parent];
 
   
-
-  if(compoData.permission?.guest && components[compoData.layout]) return <SpecificComponentLayout>
-      <SpecificComponent description={compoData?.description}>
+  // chekcing permission and component exists or not
+  if (compoData.permission?.guest && components[compoData.layout]) return <SpecificComponentLayout>
+      {/* parent  */}
+      <SpecificComponentParent description={compoData?.description}>
         {compoData?.content?.length && compoData.content.map((d, i) => {
           const Child = components[d];
-
+          // child components
+          // checking component exists or not and then render components
           if(components[d]) return <Child key={i} description={`${compoData.description}- child ${i+1} - ${d}`}/>
         })}
-    </SpecificComponent>
+    </SpecificComponentParent>
   </SpecificComponentLayout>
 
   return null
