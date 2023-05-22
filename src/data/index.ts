@@ -21,7 +21,10 @@ export type CompoDataTypes = {
     layout: string,
     content: ContentType[],
     faqs: string,
-    tour ?: {}[]
+  tour?: {}[],
+  functions: {
+      add : (a: number, b: number)=> number
+    }
 }
 
 export const compoData : CompoDataTypes = {
@@ -40,9 +43,17 @@ export const compoData : CompoDataTypes = {
         role : null
   },
   content: [
-    { id: 1, name: "navbar", title: "CDDA", description: "", logo : "" },
+    { id: 1, name: "navbar", title: "Cyclone", description: "", logo : "" },
     { id: 2, name: "content", title: "This is content 1", description: "Lorem ipsum to be added" },
+    { id: 3, name: "content", title: "Testing component 2", description: "Lorem added" },
+    { id: 4, name: "k", title: "k testing", description: "nice to have k with us" },
+    // { id: 5, name: "content", title: "", description: "" },
   ],
   faqs: "Ask me something",
-  tour: []
+  tour: [],
+  functions: {
+    add: (a, b) => {
+      return a + b
+    }
+  }
 };

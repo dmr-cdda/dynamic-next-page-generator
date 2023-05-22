@@ -1,7 +1,25 @@
 import React from 'react'
 
 const Content = (props : any) => {
-  const { title, description } = props;
+  const { title, description, functions } = props;
+
+          //   {
+          //     Iterate over the properties of the `functions` object
+          //   Object.entries(compoData.functions).forEach(([key, value]) => {
+          //     // Check if the value is a function
+          //     if (typeof value === 'function') {
+          //       // Render a button for each function dynamically
+          //       return (
+          //         <button key={key} onClick={() => value(5, 6)}>
+          //           Call {key} function
+          //         </button>
+          //       );
+          //     }
+          //     return null;
+          //   })
+          // }
+  
+  
   
   return (
           <div className="flex-grow">
@@ -13,6 +31,20 @@ const Content = (props : any) => {
         </div>
       </div>
   )
+  
+  // const fc = () => {
+  //   const bb = Object.entries(functions).find(([key, value]) => {
+  //     // Check if the value is a function
+  //     if (typeof value === 'function') return value;
+    
+  //   });
+  //   return bb[1]
+  // }
+
+  // console.log(fc()(5,9));
+  
+
+  // return <div>My Component</div>;
 }
 
 export default Content
